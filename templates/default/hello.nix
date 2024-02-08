@@ -27,7 +27,7 @@
     #settings.PermitRootLogin = "yes";
   };
   users.users."alice".openssh.authorizedKeys.keys = [
-    # replace with your ssh key                                                       <
+    # replace with your ssh key                                                       
     "ssh-ed25519 NOTAREALKEYBUTTHISISWHEREYOURSSHOULDBEdslkfjsoi3cjnefoODIUFNI0JDNCKL+" # content of authorized_keys file
   ];
 
