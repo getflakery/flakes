@@ -20,6 +20,6 @@
 
     nixosModules = {
       flakery = ./modules/flakery/mod.nix;
-    }
+    };
   };
 }
