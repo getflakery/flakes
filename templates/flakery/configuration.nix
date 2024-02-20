@@ -1,5 +1,5 @@
 { config, pkgs, ... }:
-let 
+let
   flakeryDomain = builtins.readFile /metadata/flakery-domain;
 in
 {
