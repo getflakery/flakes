@@ -19,7 +19,7 @@
     };
 
     nixosModules = {
-      flakery = ./modules/flakery/mod.nix
+      flakery = ./modules/flakery/mod.nix;
     }
   };
 }
