@@ -4,19 +4,22 @@
   outputs = { self, nixpkgs }: {
 
     templates = {
-      default = {
-        path = ./templates/default;
-        description = "default application for flakery";
+      quickstart = {
+        path = ./templates/quickstart;
+        description = "quickstart application for flakery";
       };
       futils = {
         path = ./templates/flake-utils;
-        description = "default application for flakery";
+        description = "flake utils starter";
       };
-          rust = {
+      rust = {
         path = ./templates/rust;
-        description = "default application for rust";
+        description = "rust nix app";
       };
     };
 
+    nixosModules = {
+      flakery = ./modules/flakery/mod.nix
+    }
   };
 }
