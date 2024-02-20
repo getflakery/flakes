@@ -16,6 +16,10 @@
         path = ./templates/rust;
         description = "rust nix app";
       };
+      flakery = {
+        path = ./templates/flakery;
+        description = "use this template to deploy nixos on flakery";
+      }
     };
 
     nixosModules = {
