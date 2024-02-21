@@ -6,8 +6,10 @@
   inputs.gomod2nix.url = "github:nix-community/gomod2nix";
   inputs.gomod2nix.inputs.nixpkgs.follows = "nixpkgs";
   inputs.gomod2nix.inputs.flake-utils.follows = "flake-utils";
+  inputs.flakery.url = "github:getflakery/flakes";
 
-  outputs =  inputs@{ self, nixpkgs, flake-utils, gomod2nix }:
+
+  outputs = inputs@{ self, nixpkgs, flake-utils, gomod2nix, flakery }:
     (flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -17,12 +19,11 @@
           # This has no effect on other platforms.
           callPackage = pkgs.darwin.apple_sdk_11_0.callPackage or pkgs.callPackage;
 
-          app =  callxaPackage ./. {
+          app = callPackage ./. {
             inherit (gomod2nix.legacyPackages.${system}) buildGoApplication;
           };
+          appModule = (import ./flakery.nix) app;
 
-          flakeryModule = (import ./flakery) app;
-          
         in
         {
           packages.default = app;
@@ -30,13 +31,11 @@
             inherit (gomod2nix.legacyPackages.${system}) mkGoEnv gomod2nix;
           };
 
-          nixosConfigurations.flakery = nixpkgs.lib.nixosSystem {
+          packages.nixosConfigurations.flakery = nixpkgs.lib.nixosSystem {
             system = system;
-            specialArgs = {
-              inherit inputs;
-            };
             modules = [
-             flakeryModule
+              flakery.nixosModules.flakery
+              appModule
             ];
           };
 
