@@ -19,7 +19,11 @@
       flakery = {
         path = ./templates/flakery;
         description = "use this template to deploy nixos on flakery";
-      }
+      };
+      go-webserver = {
+        path = ./templates/go-webserver;
+        description = "use this template to deploy a go webserver on flakery";
+      };
     };
 
     nixosModules = {
