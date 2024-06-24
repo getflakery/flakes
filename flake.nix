@@ -39,15 +39,6 @@
       nixosConfigurations = {
         base =
           {
-            # https://www.tweag.io/blog/2020-07-31-nixos-flakes/#pinning-nixpkgs
-            nix.registry.nixpkgs.flake = nixpkgs;
-
-            # Makes it so things that require channels can still work
-            # such as nix-shell
-            nix.nixPath = [
-              "nixpkgs=flake:nixpkgs"
-            ];
-
             system.stateVersion = "23.05"; # Did you read the comment?
 
             services.tailscale = {
