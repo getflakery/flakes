@@ -42,7 +42,7 @@
 
             environment.systemPackages = [
               git
-            ]
+            ];
             system.stateVersion = "23.05"; # Did you read the comment?
 
             services.tailscale = {
