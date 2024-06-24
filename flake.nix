@@ -24,10 +24,15 @@
         path = ./templates/go-webserver;
         description = "use this template to deploy a go webserver on flakery";
       };
+      jupyter-notebook = {
+        path = ./templates/jupyter-notebook;
+      };
     };
 
     nixosModules = {
       flakery = ./modules/flakery/mod.nix;
+      base = ./modules/flakery/base.nix;
+
     };
   };
 }
