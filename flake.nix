@@ -48,13 +48,11 @@
             };
 
             security.sudo.wheelNeedsPassword = false;
-            programs.zsh.enable = true;
             users.users.alice = {
               isNormalUser = true;
               extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
               packages = with pkgs; [ ];
               group = "alice";
-              shell = pkgs.zsh;
               # passwordFile = "/persist/passwords/alice";
             };
             users.groups.alice = { };
