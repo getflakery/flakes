@@ -2,42 +2,40 @@
   description = "Flakery templates";
 
   outputs = { self, nixpkgs }:
-  let 
-    pkgs = nixpkgs.legacyPackages.x86_64-linux;
-  in
-  {
+    let
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    in
+    {
 
-    templates = {
-      quickstart = {
-        path = ./templates/quickstart;
-        description = "quickstart application for flakery";
+      templates = {
+        quickstart = {
+          path = ./templates/quickstart;
+          description = "quickstart application for flakery";
+        };
+        futils = {
+          path = ./templates/flake-utils;
+          description = "flake utils starter";
+        };
+        rust = {
+          path = ./templates/rust;
+          description = "rust nix app";
+        };
+        flakery = {
+          path = ./templates/flakery;
+          description = "use this template to deploy nixos on flakery";
+        };
+        go-webserver = {
+          path = ./templates/go-webserver;
+          description = "use this template to deploy a go webserver on flakery";
+        };
+        jupyter-notebook = {
+          path = ./templates/jupyter-notebook;
+        };
       };
-      futils = {
-        path = ./templates/flake-utils;
-        description = "flake utils starter";
-      };
-      rust = {
-        path = ./templates/rust;
-        description = "rust nix app";
-      };
-      flakery = {
-        path = ./templates/flakery;
-        description = "use this template to deploy nixos on flakery";
-      };
-      go-webserver = {
-        path = ./templates/go-webserver;
-        description = "use this template to deploy a go webserver on flakery";
-      };
-      jupyter-notebook = {
-        path = ./templates/jupyter-notebook;
-      };
-    };
 
-    nixosModules = {
-      flakery = ./modules/flakery/mod.nix;
-      base = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
+      nixosModules = {
+        flakery = ./modules/flakery/mod.nix;
+        base =
           {
             # https://www.tweag.io/blog/2020-07-31-nixos-flakes/#pinning-nixpkgs
             nix.registry.nixpkgs.flake = nixpkgs;
@@ -93,11 +91,7 @@
                 ];
               };
             };
-          }
-
-        ];
+          };
       };
-
     };
-  };
 }
