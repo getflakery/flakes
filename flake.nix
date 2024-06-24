@@ -1,7 +1,11 @@
 {
   description = "Flakery templates";
 
-  outputs = { self, nixpkgs }: {
+  outputs = { self, nixpkgs }:
+  let 
+    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+  in
+  {
 
     templates = {
       quickstart = {
