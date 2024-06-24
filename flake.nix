@@ -35,6 +35,8 @@
 
       nixosModules = {
         flakery = ./modules/flakery/mod.nix;
+      };
+      nixosConfigurations = {
         base =
           {
             # https://www.tweag.io/blog/2020-07-31-nixos-flakes/#pinning-nixpkgs
