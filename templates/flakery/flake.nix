@@ -7,7 +7,7 @@
   };
 
   outputs = { self, nixpkgs, flakery }: {
-    nixosConfigurations.hello-flakery = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.flakery = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         flakery.nixosModules.flakery
