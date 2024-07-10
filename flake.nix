@@ -35,6 +35,7 @@
 
       nixosModules = {
         flakery = ./modules/flakery/mod.nix;
+        flakery-dev = ./modules/flakery/dev.nix;
       };
       nixosConfigurations = {
         base =
