@@ -92,7 +92,7 @@
           };
       };
 
-      packages.test = pkgs.testers.runNixOSTest
+      packages.x86_64-linux.test = pkgs.testers.runNixOSTest
         {
           skipLint = true;
           name = "Test bootstrap write files";
