@@ -89,5 +89,31 @@
             };
           };
       };
+
+      packages.test = pkgs.testers.runNixOSTest
+      {
+      skipLint = true;
+      name = "Test bootstrap write files";
+
+
+
+      nodes = {
+        machine = { pkgs, ... }: {
+          # Empty config sets some defaults
+          imports = [
+            ./modules/flakery/dev.nix
+          ];
+        };
+
+      };
+
+      testScript = ''
+        machine.start()
+        # wait for port 9002
+        machine.wait_for_open_port(9002)
+      '';
     };
+
+
+};
 }

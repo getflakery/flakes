@@ -1,0 +1,25 @@
+name: flakes
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+jobs:
+  build-flake:
+    runs-on: ubuntu-22.04
+    permissions:
+      id-token: "write"
+      contents: "read"
+    strategy:
+      matrix:
+        flakename:
+          - test
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+      - uses: DeterminateSystems/flake-checker-action@main
+      - name: Run `nix build`
+        run: nix build .#${{ matrix.flakename }}
