@@ -95,7 +95,7 @@
       packages.x86_64-linux.test = pkgs.testers.runNixOSTest
         {
           skipLint = true;
-          name = "Test bootstrap write files";
+          name = "Test prometheus";
 
 
 
@@ -112,7 +112,7 @@
           testScript = ''
             machine.start()
             # wait for port 9002
-            machine.wait_for_open_port(9002)
+            machine.wait_for_open_port(9000)
           '';
         };
 
