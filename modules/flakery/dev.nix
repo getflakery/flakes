@@ -1,5 +1,5 @@
 { modulesPath, ... }: {
-  imports = [ "${modulesPath}/virtualisation/amazon-image.nix" ];
+  # imports = [ "${modulesPath}/virtualisation/amazon-image.nix" ];
   services.prometheus = {
     enable = true;
     port = 9090;
