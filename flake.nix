@@ -112,7 +112,7 @@
           testScript = ''
             machine.start()
             # wait for port 9002
-            machine.wait_for_open_port(9000)
+            machine.wait_for_open_port(9002)
           '';
         };
 
