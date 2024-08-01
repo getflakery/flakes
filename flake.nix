@@ -113,6 +113,10 @@
             machine.start()
             # wait for port 9002
             machine.wait_for_open_port(9002)
+            #  curl -I  localhost:9002 | grep -q "200 OK"
+            status, out = machine.execute("curl -I  localhost:9002 | curl -I localhost:9002 | grep '200 OK'")
+            assert status == 0
+            assert "200 OK" in out
           '';
         };
 
