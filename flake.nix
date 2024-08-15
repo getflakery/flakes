@@ -107,14 +107,22 @@
               ];
             };
 
+            machine2 = { ... }: {
+              # Empty config sets some defaults
+
+            };
+
           };
 
           testScript = ''
-            machine.start()
+            start_all()
             # wait for port 9002
             machine.wait_for_open_port(9002)
             #  curl -I  localhost:9002 | grep -q "200 OK"
             status, out = machine.execute("curl -I  localhost:9002 | curl -I localhost:9002 | grep '200 OK'")
+            assert status == 0
+            assert "200 OK" in out
+            status, out = machine2.execute("curl -I  machine:9002 | curl -I machine:9002 | grep '200 OK'")
             assert status == 0
             assert "200 OK" in out
           '';

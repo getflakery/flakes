@@ -1,4 +1,4 @@
-{ modulesPath, ... }: {
+{ ... }: {
   services.prometheus = {
     enable = true;
     port = 9090;
@@ -10,4 +10,6 @@
       };
     };
   };
+  # allow port 9002
+  networking.firewall.allowedTCPPorts = [ 9002 ];
 }
